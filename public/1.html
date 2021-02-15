@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A-Frame 101</title>
+    <script src="libs/aframe/aframe.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-entity id="box1" position="0 0 -10">
+            <a-torus-knot id="doivid" position="-7 1 0" color="#ACC150"></a-torus-knot>
+            <a-text position="-1 2 0" rotation="0 0 0" color="#141414" value="Hello, World!"></a-text>
+            <a-box  position="-3 1 0" rotation="0 0 0" color="#4CC309"></a-box>
+            <a-cylinder position="0 1 0" rotation="0 0 0" color="#4CC309"></a-cylinder>
+            <a-sphere position="3 1 0" rotation="0 0 0" color="#4CC309">
+                <a-ring position="0 1 0" rotation="0 45 45" color="red"></a-ring>
+            </a-sphere>
+            <a-dodecahedron position="7 0 0" color="#BBC009"></a-dodecahedron>
+        </a-entity>
+        <a-entity id="env">
+            <a-light type="ambient"  color="black"></a-light>
+            <a-light type="point" position="0 5 -5" intensity="1" color="blue"></a-light>
+            <a-light type="point" position="0 5 5" intensity="1" color="red"></a-light>
+            <a-sky src="#skyTexture"></a-sky>
+            <a-plane src="#gndTexture" repeat="100 100"  position="0 -1 0" scale="1000 1000" rotation="-90 0 0"></a-plane>
+        </a-entity>
+        <a-assets>
+            <img id="gndTexture"
+              src="assets/bgs/gnd1.jpg">
+            <img id="skyTexture" crossorigin="anonymous"
+              src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+          </a-assets>
+
+    </a-scene>
+    <script>
+        let r = 5;
+        let teta = 0;
+        const cx = '10';
+        const cy = '10';
+        let x = parseInt(cx) + (r * Math.cos(teta));
+        let y = parseInt(cy) + (r * Math.sin(teta));
+        setInterval(() => {
+            x = parseInt(cx) + (r * Math.cos(teta));
+            y = parseInt(cy) + (r * Math.sin(teta));
+            $('#doivid').attr('position', x + ' ' + y + ' 0');
+            teta += (0.01 * Math.PI)
+        }, 1)
+    </script>
+</body>
+</html>
